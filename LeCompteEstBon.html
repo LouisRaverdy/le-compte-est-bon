@@ -1,0 +1,136 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le compte est bon !</title>
+</head>
+<body>
+    <div class="vertical-container">
+        <div class="welcome-container"><div class="welcome">Bienvenue sur,</div><div class="title">Le compte est bon !</div></div>
+        <div class="calcul-container">
+            <div class="calcul" id="calcul-container">
+                <button class="cell-operation" id="6" onclick="moveCell(this, false)">
+                    <div class="cell-operation-text">6</div>
+                </button>
+            </div>
+            <div class="equal">=</div>
+            <div class="result" id="result">123</div>
+        </div>
+        <div class="blocs-container" id="blocs-container">
+            <button class="cell-operation" id="8" onclick="moveCell(this, true)">
+                <div class="cell-operation-text">8</div>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+    
+    * {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .vertical-container {
+        height: 100vh;
+        width: 600px;
+    }
+
+    .welcome-container {
+        margin-top: 80px;
+    }
+    
+    .welcome {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    .title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .calcul-container {
+        margin-top: 90px;
+        display: flex;
+        align-items: center;
+        width: 600px;
+        height: 100px;
+        border-radius: 20px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .calcul {
+        height: 100%;       
+        width: -webkit-fill-available;
+        display: flex;
+        margin-left: 12px;
+        align-items: center;
+    }
+
+    .equal {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .result {
+        font-family: 'Montserrat', sans-serif;
+        margin-left: 10px;
+        margin-right: 30px;
+        font-size: 35px;
+        font-weight: 500;
+    }
+
+    .blocs-container {
+        width: 100%;
+        height: 200px;
+        margin-top: 70px;
+        display: flex;
+    }
+
+    .cell-operation {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+        border-radius: 20px;
+        background-color: rgb(213, 236, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        outline: none;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.4s, background-color 0.3s;
+        cursor: pointer;
+    }
+
+    .cell-operation:hover {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+        background-color: rgb(196, 228, 255);
+        transform: translateY(-2px);
+    }
+
+    .cell-operation-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 35px;
+        font-weight: 700;
+    }
+</style>
+<script>
+    function moveCell(ref, toCalcul) {
+        console.log(ref.id)
+        document.getElementById(toCalcul ? 'calcul-container' : 'blocs-container').insertAdjacentHTML('beforeend', `<button class="cell-operation" id="${ref.id}" onclick="moveCell(this, ${!toCalcul})"><div class="cell-operation-text">${ref.id}</div></button>`)
+        ref.remove()
+    }
+</script>
