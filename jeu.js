@@ -30,6 +30,8 @@ function generateQuestion() {
 	}
 
 	answer = eval(question)
+	console.log(answer)
+	document.getElementById('result').innerText = answer
 }
 
 var player_elements = "";
