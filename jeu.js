@@ -4,20 +4,33 @@ var possibiliti_operation = [" * ", " / ", " + ", " - "];
 var numbers = [];
 var operator = [];
 var question = numbers[0];
+var answer;
 
-for (let i = 0; i < 6; i++){
-	numbers.push(possibiliti_number[Math.floor(Math.random()*possibiliti_number.length)]);
-}
-for (let i = 0; i < 5; i++){
-	operator.push(possibiliti_operation[Math.floor(Math.random()*possibiliti_operation.length)]);
-}
-for (let i = 0; i < operator.length; i++){
-	question += operator[i] + numbers[i + 1];
-}
+function generateQuestion() {
+	numbers = [];
+	operators = [];
+	question = numbers[0];
 
-var awnser = eval(question)
+	for (let i = 0; i < 6; i++){
+		numbers.push(possibiliti_number[Math.floor(Math.random()*possibiliti_number.length)]);
+	}
+	for (let i = 0; i < 5; i++){
+		operators.push(possibiliti_operation[Math.floor(Math.random()*possibiliti_operation.length)]);
+	}
+	for (let i = 0; i < operator.length; i++){
+		question += operator[i] + numbers[i + 1];
+	}
 
-// ---------------
+	for (number in numbers) {
+		document.getElementById('blocs-container').insertAdjacentHTML('beforeend', `<button class="cell-operation" id="${number}" onclick="moveCell(this, true)"><div class="cell-operation-text">${numbers[number]}</div></button>`)
+	}
+
+	for (operator in operators) {
+		document.getElementById('blocs-container').insertAdjacentHTML('beforeend', `<button class="cell-operation" id="${operator}" onclick="moveCell(this, true)"><div class="cell-operation-text">${operators[operator]}</div></button>`)
+	}
+
+	answer = eval(question)
+}
 
 var player_elements = "";
 var element_rest = numbers.concat(operator);
@@ -33,7 +46,7 @@ function delete_element(index){
 }
 
 function validation(){
-	if (eval(player_elements) == awnser){
+	if (eval(player_elements) == answer && player_elements === undefined){
 		return true
 	}
 	else{

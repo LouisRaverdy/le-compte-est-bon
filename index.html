@@ -9,20 +9,13 @@
     <div class="vertical-container">
         <div class="welcome-container"><div class="welcome">Bienvenue sur,</div><div class="title">Le compte est bon !</div></div>
         <div class="calcul-container">
-            <div class="calcul" id="calcul-container">
-                <button class="cell-operation" id="6" onclick="moveCell(this, false)">
-                    <div class="cell-operation-text">6</div>
-                </button>
-            </div>
+            <div class="calcul" id="calcul-container"></div>
             <div class="equal">=</div>
             <div class="result" id="result">123</div>
         </div>
-        <div class="blocs-container" id="blocs-container">
-            <button class="cell-operation" id="8" onclick="moveCell(this, true)">
-                <div class="cell-operation-text">8</div>
-            </button>
-        </div>
+        <div class="blocs-container" id="blocs-container"></div>
     </div>
+    <button class="check" onclick="checkResult()">Vérifier ?</button>
 </body>
 </html>
 <style>
@@ -126,11 +119,48 @@
         font-size: 35px;
         font-weight: 700;
     }
+
+    .check {
+        position: absolute;
+        right: 100px;
+        top: 43%;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 25px;
+        font-weight: 500;
+        border: 0;
+        color: white;
+        outline: none;
+        width: 200px;
+        cursor: pointer;
+        height: 55px;
+        background-color: #128be8;
+        -webkit-box-shadow:0px 0px 25px 6px rgba(18,139,232,0.5);
+        -moz-box-shadow: 0px 0px 25px 6px rgba(18,139,232,0.5);
+        box-shadow: 0px 0px 25px 6px rgba(18,139,232,0.5);
+        border-radius: 25px;
+        transition: scale 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+
+    .check:hover {
+        -webkit-box-shadow:0px 0px 41px 15px rgba(18,139,232,0.5);
+        -moz-box-shadow: 0px 0px 41px 15px rgba(18,139,232,0.5);
+        box-shadow: 0px 0px 41px 15px rgba(18,139,232,0.5);
+        scale: 108%;
+    }
 </style>
+<script src="jeu.js"></script>
 <script>
     function moveCell(ref, toCalcul) {
         console.log(ref.id)
         document.getElementById(toCalcul ? 'calcul-container' : 'blocs-container').insertAdjacentHTML('beforeend', `<button class="cell-operation" id="${ref.id}" onclick="moveCell(this, ${!toCalcul})"><div class="cell-operation-text">${ref.id}</div></button>`)
         ref.remove()
+    }
+
+    window.onload = function() {
+        generateQuestion()
+    };
+
+    function checkResult() {
+        console.log(validation())
     }
 </script>
