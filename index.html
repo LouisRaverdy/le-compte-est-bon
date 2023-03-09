@@ -151,8 +151,8 @@
 <script src="jeu.js"></script>
 <script>
     function moveCell(ref, toCalcul) {
-        console.log(ref.id)
-        document.getElementById(toCalcul ? 'calcul-container' : 'blocs-container').insertAdjacentHTML('beforeend', `<button class="cell-operation" id="${ref.id}" onclick="moveCell(this, ${!toCalcul})"><div class="cell-operation-text">${ref.id}</div></button>`)
+        console.log(ref)
+        document.getElementById(toCalcul ? 'calcul-container' : 'blocs-container').insertAdjacentHTML('beforeend', `<button class="cell-operation" id="${ref.id}" onclick="moveCell(this, ${!toCalcul})"><div class="cell-operation-text">${ref.innerText}</div></button>`)
         ref.remove()
     }
 
